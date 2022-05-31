@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "845b2ac6-ebd0-4d4f-ba6e-e9ebc8673e9e",
+		"name": "Test Program",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12585799"
+	},
+	"item": [
+		{
+			"name": "Find All Nasabah",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/nasabah/find-all",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"nasabah",
+						"find-all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Nasabah By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/nasabah/find-by-id/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"nasabah",
+						"find-by-id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Nasabah",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"namaDepan\" : \"Pierre\",\r\n    \"namaBelakang\" : \"Tendean\",\r\n    \"tempatLahir\" : \"Surabaya\",\r\n    \"tanggalLahir\" : \"22/04/1988\",\r\n    \"jenisKelamin\" : \"Laki-laki\",\r\n    \"alamat\" : \"Jalan Pahlawan 2\",\r\n    \"noHandphone\" : \"081232320987\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/nasabah/insert",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"nasabah",
+						"insert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Nasabah",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"namaDepan\" : \"Satria\",\r\n    \"namaBelakang\" : \"Aldian\",\r\n    \"tempatLahir\" : \"Jepara\",\r\n    \"tanggalLahir\" : \"09/06/1997\",\r\n    \"jenisKelamin\" : \"Laki-laki\",\r\n    \"alamat\" : \"Permata Duta Sukmajaya Depok\",\r\n    \"noHandphone\" : \"081152394832\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/nasabah/update/4",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"nasabah",
+						"update",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Nasabah",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/nasabah/delete/3",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"nasabah",
+						"delete",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Rekening",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"no_rekening\" : 7708006,\r\n    \"saldo\" : 10365000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/rekening/insert/6",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rekening",
+						"insert",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Transaksi",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"no_transaksi\": 12122,\r\n    \"jenis_transaksi\" :\"kredit\",\r\n    \"tanggal_transaksi\" : \"2022-05-07\",\r\n    \"jumlah_transaksi\": 35000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/transaksi/insert/7708001",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"transaksi",
+						"insert",
+						"7708001"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Transaksi",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/transaksi/delete/2",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"transaksi",
+						"delete",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaksi By Date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/transaksi/date/03052022",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"transaksi",
+						"date",
+						"03052022"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaksi By No Rekening",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
