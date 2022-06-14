@@ -2,7 +2,7 @@ package com.satriaaldian.rest.controllers;
 
 import com.satriaaldian.rest.RestResponse;
 import com.satriaaldian.rest.dtos.nasabah.NasabahHeaderDto;
-import com.satriaaldian.rest.dtos.nasabah.NasabahInsertDto;
+import com.satriaaldian.rest.dtos.nasabah.NasabahUpsertDto;
 import com.satriaaldian.rest.dtos.nasabah.NasabahUpdateDto;
 import com.satriaaldian.rest.services.NasabahService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class NasabahController {
     }
 
     @PostMapping("insert")
-    public ResponseEntity<RestResponse<Boolean>> insertNasabah(@RequestBody NasabahInsertDto newNasabah){
+    public ResponseEntity<RestResponse<Boolean>> insertNasabah(@RequestBody NasabahUpsertDto newNasabah){
         return new ResponseEntity<>(
                 new RestResponse<>(service.insertNasabah(newNasabah),
                         "Berhasil Membuat Entitas",
@@ -51,7 +51,7 @@ public class NasabahController {
     }
 
     @PutMapping("update/{id}")
-    public ResponseEntity<RestResponse<Boolean>> updateNasabah (@PathVariable int id, @RequestBody NasabahUpdateDto updateDto){
+    public ResponseEntity<RestResponse<Boolean>> updateNasabah (@PathVariable int id, @RequestBody NasabahUpsertDto updateDto){
         return new ResponseEntity<>(
                 new RestResponse<>( service.updateNasabah(id, updateDto),
                         "Berhasil Mengupdate Entitas",

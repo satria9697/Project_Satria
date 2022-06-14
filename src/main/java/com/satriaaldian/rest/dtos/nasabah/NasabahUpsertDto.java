@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Data
-public class NasabahInsertDto implements Serializable {
+public class NasabahUpsertDto implements Serializable {
 
     private final String namaDepan;
     private final String namaBelakang;
