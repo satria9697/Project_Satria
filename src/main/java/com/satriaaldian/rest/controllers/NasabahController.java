@@ -3,7 +3,6 @@ package com.satriaaldian.rest.controllers;
 import com.satriaaldian.rest.RestResponse;
 import com.satriaaldian.rest.dtos.nasabah.NasabahHeaderDto;
 import com.satriaaldian.rest.dtos.nasabah.NasabahUpsertDto;
-import com.satriaaldian.rest.dtos.nasabah.NasabahUpdateDto;
 import com.satriaaldian.rest.services.NasabahService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,20 +14,15 @@ import java.util.List;
 @RestController
 @RequestMapping("nasabah")
 public class NasabahController {
-
-    private NasabahService service;
-
     @Autowired
-    public NasabahController(NasabahService service) {
-        this.service = service;
-    }
+    private NasabahService service;
 
     @GetMapping("find-all")
     public ResponseEntity<RestResponse<List<NasabahHeaderDto>>> findAllNasabah(){
         return ResponseEntity.ok().body(
                 new RestResponse<>(
                         service.findAllNasabah(),
-                        "Berhasil Ambil Data",
+                        "Berhasil Menampilkan Semua Data Nasabah",
                         "200"));
     }
 
@@ -37,7 +31,7 @@ public class NasabahController {
         return ResponseEntity.ok().body(
                 new RestResponse<>(
                         service.findNasabahById(id),
-                        "Berhasil Ambil Data",
+                        "Berhasil Menampilkan Data Nasabah Dengan ID: " +id,
                         "200"));
     }
 
@@ -45,7 +39,7 @@ public class NasabahController {
     public ResponseEntity<RestResponse<Boolean>> insertNasabah(@RequestBody NasabahUpsertDto newNasabah){
         return new ResponseEntity<>(
                 new RestResponse<>(service.insertNasabah(newNasabah),
-                        "Berhasil Membuat Entitas",
+                        "Berhasil Membuat Data Nasabah Baru",
                         "201"),
                 HttpStatus.CREATED);
     }
@@ -54,7 +48,7 @@ public class NasabahController {
     public ResponseEntity<RestResponse<Boolean>> updateNasabah (@PathVariable int id, @RequestBody NasabahUpsertDto updateDto){
         return new ResponseEntity<>(
                 new RestResponse<>( service.updateNasabah(id, updateDto),
-                        "Berhasil Mengupdate Entitas",
+                        "Berhasil Mengupdate Data Nasabah Dengan ID: "+id,
                         "200"),
                 HttpStatus.OK);
     }
@@ -63,7 +57,7 @@ public class NasabahController {
     public ResponseEntity<RestResponse<Boolean>> deleteNasabah (@PathVariable int id){
         return new ResponseEntity<>(
                 new RestResponse<>(  service.deleteNasabah(id),
-                        "Berhasil Menghapus Entitas",
+                        "Berhasil Menghapus Data Nasabah Dengan ID: " + id,
                         "200"),
                 HttpStatus.OK);
     }

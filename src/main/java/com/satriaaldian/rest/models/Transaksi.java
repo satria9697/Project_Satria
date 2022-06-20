@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,13 +19,13 @@ public class Transaksi {
     private Integer id;
 
     @Column(name = "no_transaksi",nullable = false)
-    private Integer noTransaksi;
+    private Long noTransaksi;
 
     @Column(name = "jenis_transaksi" ,nullable = false,length = 10)
     private String jenisTransaksi;
 
     @Column(name = "tanggal_transaksi",nullable = false)
-    private LocalDate tanggalTransaksi;
+    private LocalDateTime tanggalTransaksi;
 
     @Column(name = "jumlah_transaksi",nullable = false)
     private Integer jumlahTransaksi;
@@ -32,20 +34,11 @@ public class Transaksi {
     @JoinColumn(name = "no_rekening", nullable = false)
     private Rekening noRekening;
 
-    public Transaksi(Integer noTransaksi, String jenisTransaksi, LocalDate tanggalTransaksi, Integer jumlahTransaksi) {
+    public Transaksi(Rekening rekening,Long noTransaksi, String jenisTransaksi, LocalDateTime tanggalTransaksi, Integer jumlahTransaksi) {
+        this.noRekening = rekening;
         this.noTransaksi = noTransaksi;
         this.jenisTransaksi = jenisTransaksi;
         this.tanggalTransaksi = tanggalTransaksi;
         this.jumlahTransaksi = jumlahTransaksi;
     }
-
-
-    public Transaksi(Rekening rekening,Transaksi insertTransaksi) {
-        this.noRekening = rekening;
-        this.noTransaksi = insertTransaksi.getNoTransaksi();
-        this.jenisTransaksi = insertTransaksi.getJenisTransaksi();
-        this.tanggalTransaksi = insertTransaksi.getTanggalTransaksi();
-        this.jumlahTransaksi = insertTransaksi.getJumlahTransaksi();
-    }
-
 }

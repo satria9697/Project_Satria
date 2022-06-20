@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Scanner;
 
 @Service
 public class TransaksiService {
@@ -27,17 +30,40 @@ public class TransaksiService {
 
     public boolean insertTransaksi(int noRekening ,TransaksiInsertDto insertDto) {
         Rekening rekening = rekeningRepository.findById(noRekening).get();
-        Transaksi transaksi = new Transaksi(rekening,insertDto.insertTransaksi());
+        Transaksi transaksi = new Transaksi(
+                rekening,
+                insertDto.getNoTransaksi(),
+                insertDto.getJenisTransaksi(),
+                LocalDateTime.now(),
+                insertDto.getJumlahTransaksi());
         transaksiRepository.save(transaksi);
+
+        int saldoTerbaru = insertDto.getJumlahTransaksi();
+        if(insertDto.getJenisTransaksi().equals("kredit")){
+            saldoTerbaru = rekening.getSaldo() - insertDto.getJumlahTransaksi();
+        } else if(insertDto.getJenisTransaksi().equals("debit")){
+            saldoTerbaru = rekening.getSaldo() + insertDto.getJumlahTransaksi();
+        }
+        rekening.setSaldo(saldoTerbaru);
+        rekeningRepository.save(rekening);
         return true;
     }
+    public String generateNoTransaksi() {
+        int number = 0;
+        int noTransaksi = number+1;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
+        String tgltrx = LocalDate.now().format(formatter);
+        return (tgltrx+String.format("%06d",noTransaksi));
+
+    }
+
 
     public boolean deleteTransaksi(int idTransaksi){
         transaksiRepository.deleteById(idTransaksi);
         return true;
     }
 
-    public List<TransaksiHeaderDto> getTransaksiByDate(LocalDate tanggalTransaksi) {
+    public List<TransaksiHeaderDto> getTransaksiByDate(LocalDateTime tanggalTransaksi) {
         return TransaksiHeaderDto.toList(transaksiRepository.getTransaksiByDate(tanggalTransaksi));
     }
 

@@ -5,15 +5,16 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 public class TransaksiHeaderDto implements Serializable {
     private final Integer id;
-    private final Integer noTransaksi;
+    private final Long noTransaksi;
     private final String jenisTransaksi;
-    private final LocalDate tanggalTransaksi;
+    private final LocalDateTime tanggalTransaksi;
     private final Integer jumlahTransaksi;
 
     public static TransaksiHeaderDto set(Transaksi transaksi){

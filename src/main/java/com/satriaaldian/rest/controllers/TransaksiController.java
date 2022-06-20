@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -43,7 +44,7 @@ public class TransaksiController {
     }
 
     @GetMapping("date/{tanggalTransaksi}")
-    public ResponseEntity<RestResponse<List<TransaksiHeaderDto>>> getTransaksiByDate(@PathVariable @DateTimeFormat(pattern = "ddMMyyyy") LocalDate tanggalTransaksi){
+    public ResponseEntity<RestResponse<List<TransaksiHeaderDto>>> getTransaksiByDate(@PathVariable @DateTimeFormat(pattern = "ddMMyyyy") LocalDateTime tanggalTransaksi){
         return ResponseEntity.ok().body(
                 new RestResponse<>(
                         service.getTransaksiByDate(tanggalTransaksi),

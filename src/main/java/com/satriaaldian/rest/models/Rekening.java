@@ -14,7 +14,7 @@ import java.util.Set;
 public class Rekening {
     @Id
     @Column(name = "no_rekening", nullable = false)
-    private Integer id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_nasabah", nullable = false)
@@ -26,14 +26,14 @@ public class Rekening {
     @OneToMany(mappedBy = "noRekening")
     private Set<Transaksi> transaksis = new LinkedHashSet<>();
 
-    public Rekening(Integer id, Integer saldo) {
-        this.id = id;
-        this.saldo = saldo;
-    }
+//    public Rekening(Integer id, Integer saldo) {
+//        this.id = id;
+//        this.saldo = saldo;
+//    }
 
-    public Rekening(Nasabah nasabah, Rekening insertRekeningNasabah) {
+    public Rekening(Nasabah nasabah, long noRekening, int saldo) {
         this.idNasabah = nasabah;
-        this.id = insertRekeningNasabah.getId();
-        this.saldo = insertRekeningNasabah.getSaldo();
+        this.id = noRekening;
+        this.saldo = saldo;
     }
 }

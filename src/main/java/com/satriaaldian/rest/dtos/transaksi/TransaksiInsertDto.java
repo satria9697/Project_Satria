@@ -9,17 +9,10 @@ import java.time.LocalDate;
 
 @Data
 public class TransaksiInsertDto implements Serializable {
-    private Integer noTransaksi;
+    private Long noTransaksi;
     private String jenisTransaksi;
     private LocalDate tanggalTransaksi;
     private Integer jumlahTransaksi;
 
-    public Transaksi insertTransaksi(){
-        return new Transaksi(
-                noTransaksi,
-                jenisTransaksi,
-                tanggalTransaksi,
-                jumlahTransaksi);
-    }
 
 }
